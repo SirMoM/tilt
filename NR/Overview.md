@@ -61,3 +61,19 @@ Die Konfiguration läuft über ein `Tiltfile` (Starlark). Dort wird definiert:
 Wenn du verstehen willst, wie die Web-UI rendert und Daten erhält, siehe:
 
 - [[webui/Rendering-Stack]]
+
+## Lokal UI erweitern
+start des React Frontends mit
+```shell
+cd web
+yarn start
+```
+Bauen von der Tilt binary
+```shell
+make install-debug
+```
+Starten eines Tilt Prozesses das das lokale React Frontend nutzt.
+```shell
+cd integrations/oneup # geht aber auch mit jeder anderen Tiltfile
+"$(go env GOPATH)/bin/tilt" up --web-mode=local
+```

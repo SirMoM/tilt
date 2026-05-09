@@ -220,6 +220,10 @@ export default class HUD extends Component<HudProps, HudState> {
 
   renderOverviewSwitch() {
     const isSocketConnected = isTiltSocketConnected(this.state.socketState)
+
+    console.debug("graph route path", this.path("/graph"))
+    console.debug("current pathname", this.props.location.pathname)
+
     return (
       <FeaturesProvider
         featureFlags={this.state.view.uiSession?.status?.featureFlags || null}
@@ -231,6 +235,15 @@ export default class HUD extends Component<HudProps, HudState> {
                 <ResourceListOptionsProvider>
                   <ResourceSelectionProvider>
                     <Routes>
+                      <Route
+                        path={this.path("/graph")}
+                        element={
+                        <div>
+                            <h1>THIS IS A TEST</h1>
+                            <h2>IS THIS on build?</h2>
+                        </div>
+                        }
+                       />
                       <Route
                         path={this.path("/r/:name/overview")}
                         element={
