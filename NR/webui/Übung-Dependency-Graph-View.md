@@ -64,18 +64,43 @@ Bevor du loslegst, lies und verstehe:
 
 ---
 
-## Teil 3: Daten verstehen
+## Teil 3: Node-Komponente mit Storybook entwickeln
+
+> [!question] Aufgabe 3.1
+> Entwickle die Darstellung eines Graph-Knotens zuerst isoliert in Storybook.
+> Lies dafür [[webui/Dependency-Graph-Nodes-und-Storybook]].
+> - Welche Props braucht ein Knoten, damit er Ressourcen-Name, Status und Aktionen anzeigen kann?
+> - Welche Statuszustände sollen als eigene Storybook-Stories sichtbar sein?
+> - Welche UI-Elemente aus Material UI v4 und `styled-components` passen zum bestehenden Stack?
+
+> [!tip] Empfehlung
+> Nutze React Flow als Basis für den Graphen.
+> Die aktuelle React-Flow-Dokumentation verwendet das Paket `@xyflow/react`.
+> Prüfe vor dem Einbau, welche Version mit React 17 im bestehenden `web/package.json` kompatibel ist.
+
+> [!question] Aufgabe 3.2
+> Erstelle eine erste `DependencyGraphNode`-Komponente und eine passende Storybook-Datei.
+> Beginne mit statischen Story-Daten, bevor du echte `UIResource`-Daten anschließt.
+> Die Story soll mindestens gesunde, fehlerhafte, laufende und deaktivierte Ressourcen zeigen.
+
+> [!important] Warum Storybook?
+> Der Graph wird schnell unübersichtlich, wenn Layout, Datenmodell und Statusdarstellung gleichzeitig entstehen.
+> Eine isolierte Node-Komponente macht die Zustände testbar, bevor React Flow das Layout übernimmt.
+
+---
+
+## Teil 4: Daten verstehen
 
 > [!important] Schlüsselfrage
 > Woher kommen die Dependency-Informationen?
 
-> [!question] Aufgabe 3.1
+> [!question] Aufgabe 4.1
 > Untersuche das `View`-Objekt in `web/src/webview.d.ts`:
 > - Was steht in `uiResources`?
 > - Öffne `web/src/core.d.ts` und schau dir `UIResource` an
 > - Hat `UIResource` Felder, die auf andere Ressourcen verweisen?
 
-> [!question] Aufgabe 3.2
+> [!question] Aufgabe 4.2
 > Recherchiere im Go-Backend:
 > - Suche in `pkg/model/` oder `internal/` nach "DependsOn", "Dependencies", oder ähnlichen Feldern
 > - Wie werden Abhängigkeiten zwischen Ressourcen im Backend modelliert?
@@ -88,9 +113,9 @@ Bevor du loslegst, lies und verstehe:
 
 ---
 
-## Teil 4: Graph rendern
+## Teil 5: Graph rendern
 
-> [!question] Aufgabe 4.1
+> [!question] Aufgabe 5.1
 > Entscheide dich für eine Rendering-Strategie:
 >
 > **Option A:** SVG manuell (volle Kontrolle, mehr Arbeit)
@@ -99,11 +124,11 @@ Bevor du loslegst, lies und verstehe:
 >
 > **Option B:** Bestehende Library nutzen
 > - z.B. `dagre` für Layout + manuelle SVG-Darstellung
-> - z.B. `reactflow` / `elkjs` für interaktive Graphen
+> - z.B. React Flow (`@xyflow/react`) / `elkjs` für interaktive Graphen
 >
 > Welche passt besser zum bestehenden Stack (kein Next.js, CRA-basiert, Material UI)?
 
-> [!question] Aufgabe 4.2
+> [!question] Aufgabe 5.2
 > Implementiere einen minimalen Graphen:
 > - Extrahiere Ressourcen-Namen aus `view.uiResources`
 > - Rendere jeden als Knoten (einfacher Kasten)
@@ -121,15 +146,15 @@ Bevor du loslegst, lies und verstehe:
 
 ---
 
-## Teil 5: Navigation integrieren
+## Teil 6: Navigation integrieren
 
-> [!question] Aufgabe 5.1
+> [!question] Aufgabe 6.1
 > Wie kommt der User zur Graph-View?
 > - Füge einen Nav-Link/Button hinzu
 > - Schau dir an, wie zwischen Table-View und Resource-View gewechselt wird
 > - Wo sitzt die Navigation? (Hinweis: `HeaderBar`, `GlobalNav`)
 
-> [!question] Aufgabe 5.2
+> [!question] Aufgabe 6.2
 > Klick auf einen Graphen-Knoten soll zur Ressourcen-Detailansicht navigieren (`/r/:name/overview`).
 > - Wie funktioniert Navigation in dieser App? (Hinweis: `useNavigate` aus react-router)
 > - Wie wird der Ressourcen-Name URL-encodet? (Hinweis: `PathBuilder.encpath`)
@@ -141,6 +166,8 @@ Bevor du loslegst, lies und verstehe:
 - [ ] Neue Route `/graph` in `HUD.tsx` eingetragen
 - [ ] `DependencyGraphPane.tsx` erstellt mit grundlegendem Layout
 - [ ] `HeaderBarPage.Graph` hinzugefügt
+- [ ] React-Flow-Paket und React-17-Kompatibilität geprüft
+- [ ] `DependencyGraphNode` isoliert in Storybook gebaut
 - [ ] Dependency-Datenquelle identifiziert (oder Feature-Gap erkannt)
 - [ ] Minimaler Graph gerendert (erst mit Testdaten)
 - [ ] Navigation zum/vom Graphen funktioniert

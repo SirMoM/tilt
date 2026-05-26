@@ -23,6 +23,7 @@ import { ResourceListOptionsProvider } from "./ResourceListOptionsContext"
 import { ResourceNavProvider } from "./ResourceNav"
 import { ResourceSelectionProvider } from "./ResourceSelectionContext"
 import ShareSnapshotModal from "./ShareSnapshotModal"
+import SidebarItem from "./SidebarItem"
 import { SidebarContextProvider } from "./SidebarContext"
 import { TiltSnackbarProvider } from "./Snackbar"
 import { SnapshotActionProvider, SnapshotProviderProps } from "./snapshot"
@@ -31,11 +32,13 @@ import { StarredResourcesContextProvider } from "./StarredResourcesContext"
 import {
   ShowErrorModal,
   ShowFatalErrorModal,
+  ResourceView,
   SocketState,
   UIResourceStatus,
 } from "./types"
 import type { Snapshot, View } from "./webview"
 import type { ObjectMeta } from "./types"
+import { DependencyGraphNode } from "./DependencyGraphNode"
 
 export type HudProps = {
   interfaceVersion: InterfaceVersion
@@ -220,6 +223,8 @@ export default class HUD extends Component<HudProps, HudState> {
 
   renderOverviewSwitch() {
     const isSocketConnected = isTiltSocketConnected(this.state.socketState)
+    const logStore = this.state.logStore || new LogStore()
+    const graphResource = this.state.view.uiResources?.[0]
 
     console.debug("graph route path", this.path("/graph"))
     console.debug("current pathname", this.props.location.pathname)
@@ -230,7 +235,7 @@ export default class HUD extends Component<HudProps, HudState> {
       >
         <PathBuilderProvider value={this.pathBuilder}>
           <SnapshotActionProvider {...this.getSnapshotProviderProps()}>
-            <LogStoreProvider value={this.state.logStore || new LogStore()}>
+            <LogStoreProvider value={logStore}>
               <ResourceGroupsContextProvider>
                 <ResourceListOptionsProvider>
                   <ResourceSelectionProvider>
@@ -238,12 +243,19 @@ export default class HUD extends Component<HudProps, HudState> {
                       <Route
                         path={this.path("/graph")}
                         element={
-                        <div>
-                            <h1>THIS IS A TEST</h1>
-                            <h2>IS THIS on build?</h2>
-                        </div>
+                          <div>
+                            {graphResource && (
+                              <DependencyGraphNode
+                                item={new SidebarItem(graphResource, logStore)}
+                                selected={false}
+                                resourceView={ResourceView.Log}
+                                pathBuilder={this.pathBuilder}
+                                uiRes={this.state.view.uiResources}
+                              ></DependencyGraphNode>
+                            )}
+                          </div>
                         }
-                       />
+                      />
                       <Route
                         path={this.path("/r/:name/overview")}
                         element={
