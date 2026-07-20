@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lektion 1: Die Route-Seam finden</title>
+    <link rel="stylesheet" href="../assets/course.css" />
+  </head>
+  <body>
+    <main class="page lesson">
+      <p class="eyebrow">Lektion 1</p>
+      <h1>Die Route-Seam für die Graph View finden</h1>
+      <p class="lede">
+        Ziel: Du findest die eine Stelle, an der aus URL-Pfaden sichtbare Tilt Web-UI-Panes werden.
+        Erst danach lohnt sich Graph-Rendering.
+      </p>
+
+      <section class="callout">
+        <h2>Warum diese Seam wichtig ist</h2>
+        <p>
+          Die Graph View ist zuerst keine Graph-Aufgabe, sondern eine Routing-Aufgabe.
+          In Tilt hängt der sichtbare Hauptinhalt an <code>HUD</code>, das ein empfangenes <code>View</code>-Objekt an konkrete Panes weitergibt.
+        </p>
+        <p>
+          React Router v6 rendert Routen mit <code>&lt;Route path="..." element={...} /&gt;</code>.
+          Ein <code>*</code>-Pfad ist die Wildcard für nicht genauer passende Routen.
+        </p>
+      </section>
+
+      <section class="task">
+        <h2>3-Minuten-Aufgabe</h2>
+        <ol>
+          <li>Öffne <code>web/src/HUD.tsx</code>.</li>
+          <li>Finde <code>renderOverviewSwitch()</code>.</li>
+          <li>Notiere die vorhandenen <code>&lt;Route&gt;</code>-Pfade.</li>
+          <li>Markiere gedanklich: Wo müsste <code>/graph</code> stehen, damit es nicht vom <code>*</code>-Fallback verschluckt wird?</li>
+        </ol>
+      </section>
+
+      <section class="quiz">
+        <h2>Retrieval Check</h2>
+        <p>Beantworte aus dem Kopf, bevor du wieder in den Code schaust.</p>
+        <details>
+          <summary>Welche Komponente ist die Top-Level-UI für den eigentlichen App-Inhalt?</summary>
+          <p class="answer"><code>HUD</code>.</p>
+        </details>
+        <details>
+          <summary>Welche Datenstruktur wird primär vom Backend an die UI gerendert?</summary>
+          <p class="answer"><code>View</code>.</p>
+        </details>
+        <details>
+          <summary>Was bedeutet der <code>*</code>-Pfad in React Router v6?</summary>
+          <p class="answer">Er ist die Wildcard für nicht genauer passende Routen.</p>
+        </details>
+      </section>
+
+      <section class="source">
+        <h2>Primärquelle</h2>
+        <p>
+          Lies als Nächstes die offizielle React-Router-v6-Dokumentation zu Routen:
+          <a href="https://reactrouter.com/6.30.3">reactrouter.com/6.30.3</a>.
+        </p>
+        <p>
+          Für den Tilt-Kontext nutze die lokale Referenz:
+          <a href="../reference/dependency-graph-view-map.html">Dependency Graph View Map</a>.
+        </p>
+      </section>
+
+      <section class="callout">
+        <h2>Frag mich danach</h2>
+        <p>
+          Wenn du unsicher bist, poste die <code>&lt;Route&gt;</code>-Liste aus <code>HUD.tsx</code>.
+          Ich prüfe dann mit dir, wo <code>/graph</code> minimal und sauber eingefügt wird.
+        </p>
+      </section>
+
+      <nav class="lesson-nav" aria-label="Lektionsnavigation">
+        <a href="0002-create-the-graph-pane.html">Nächste Lektion: Graph Pane</a>
+        <a href="../reference/dependency-graph-view-map.html">Referenzkarte</a>
+      </nav>
+    </main>
+  </body>
+</html>

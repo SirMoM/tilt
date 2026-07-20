@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lektion 3: Header Navigation verstehen</title>
+    <link rel="stylesheet" href="../assets/course.css" />
+  </head>
+  <body>
+    <main class="page lesson">
+      <p class="eyebrow">Lektion 3</p>
+      <h1>HeaderBarPage ist die sichtbare Seitenauswahl</h1>
+      <p class="lede">
+        Ziel: Du verstehst, wie die Header-Navigation weiß, welche Seite gerade aktiv ist.
+      </p>
+
+      <section class="callout">
+        <h2>Der kleine Vertrag</h2>
+        <p>
+          <code>HeaderBar</code> bekommt eine <code>currentPage</code>-Prop.
+          Der Enum <code>HeaderBarPage</code> benennt die erlaubten Seitenzustände.
+        </p>
+        <p>
+          Für die Graph View ist das die minimale UI-Erweiterung: ein neuer Enum-Wert und eine Stelle,
+          an der die Graph Pane diesen Wert an den Header übergibt.
+        </p>
+      </section>
+
+      <section class="task">
+        <h2>5-Minuten-Aufgabe</h2>
+        <ol>
+          <li>Öffne <code>web/src/HeaderBar.tsx</code>.</li>
+          <li>Finde <code>HeaderBarPage</code>.</li>
+          <li>Suche alle Stellen, an denen <code>currentPage</code> gelesen wird.</li>
+          <li>Beschreibe in einem Satz, was sich für <code>Graph</code> ändern müsste.</li>
+        </ol>
+      </section>
+
+      <section class="quiz">
+        <h2>Retrieval Check</h2>
+        <details>
+          <summary>Was benennt <code>HeaderBarPage</code>?</summary>
+          <p class="answer">Die bekannten Seitenzustände im Header.</p>
+        </details>
+        <details>
+          <summary>Was macht <code>currentPage</code> sichtbar?</summary>
+          <p class="answer">Welche Navigation aktuell ausgewählt ist.</p>
+        </details>
+        <details>
+          <summary>Warum gehört das nicht in die Node-Komponente?</summary>
+          <p class="answer">Nodes kennen keinen globalen Seitenzustand.</p>
+        </details>
+      </section>
+
+      <section class="source">
+        <h2>Primärquelle</h2>
+        <p>
+          Die lokale Primärquelle ist <code>web/src/HeaderBar.tsx</code>.
+          Für Routing-Begriffe siehe die <a href="https://reactrouter.com/6.30.3">React-Router-v6-Dokumentation</a>.
+        </p>
+      </section>
+
+      <nav class="lesson-nav" aria-label="Lektionsnavigation">
+        <a href="0002-create-the-graph-pane.html">Zurück</a>
+        <a href="0004-design-the-node-api.html">Nächste Lektion</a>
+      </nav>
+    </main>
+  </body>
+</html>

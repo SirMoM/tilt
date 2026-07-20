@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lektion 7: Blocker vs Dependencies</title>
+    <link rel="stylesheet" href="../assets/course.css" />
+  </head>
+  <body>
+    <main class="page lesson">
+      <p class="eyebrow">Lektion 7</p>
+      <h1>Aktuelle Blocker sind keine stabile Dependency-Quelle</h1>
+      <p class="lede">
+        Ziel: Du vermeidest den wichtigsten Datenmodell-Fehler der Graph View.
+      </p>
+
+      <section class="callout">
+        <h2>Die Falle</h2>
+        <p>
+          <code>status.waiting.on</code> kann wie eine Dependency-Kante aussehen.
+          Bei <code>waiting.reason = "waiting-for-dep"</code> zeigt es auf andere Ressourcen.
+        </p>
+        <p>
+          Trotzdem ist es nur aktueller Scheduler-Zustand.
+          Wenn die Ressource nicht mehr wartet, kann die Information verschwinden.
+        </p>
+      </section>
+
+      <section class="task">
+        <h2>4-Minuten-Aufgabe</h2>
+        <ol>
+          <li>Lies in <code>NR/webui/Dependency-Graph-Datenquelle.md</code> die Abschnitte zu <code>status.waiting</code>.</li>
+          <li>Erkläre den Unterschied zwischen „wartet gerade auf“ und „hängt statisch ab von“.</li>
+          <li>Suche das Gegenbeispiel <code>is-unparallelizable-local</code>.</li>
+        </ol>
+      </section>
+
+      <section class="quiz">
+        <h2>Retrieval Check</h2>
+        <details>
+          <summary>Warum reicht <code>status.waiting.on</code> nicht für echte Edges?</summary>
+          <p class="answer">Es beschreibt nur aktuellen Zustand.</p>
+        </details>
+        <details>
+          <summary>Welches Feld enthält statische Backend-Dependencies?</summary>
+          <p class="answer"><code>Manifest.ResourceDependencies</code>.</p>
+        </details>
+        <details>
+          <summary>Welche Struktur bilden direkte Dependencies?</summary>
+          <p class="answer">Eine gerichtete Adjazenzliste.</p>
+        </details>
+      </section>
+
+      <section class="source">
+        <h2>Primärquelle</h2>
+        <p>
+          Nutze <code>NR/webui/Dependency-Graph-Datenquelle.md</code> und später
+          <code>pkg/model/manifest.go</code> als Code-Quelle.
+        </p>
+      </section>
+
+      <nav class="lesson-nav" aria-label="Lektionsnavigation">
+        <a href="0006-read-uiresource-state.html">Zurück</a>
+        <a href="0008-render-react-flow-with-layout.html">Nächste Lektion</a>
+      </nav>
+    </main>
+  </body>
+</html>

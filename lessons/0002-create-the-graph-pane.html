@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lektion 2: Graph Pane erstellen</title>
+    <link rel="stylesheet" href="../assets/course.css" />
+  </head>
+  <body>
+    <main class="page lesson">
+      <p class="eyebrow">Lektion 2</p>
+      <h1>Die Graph Pane als kleinste sichtbare Einheit</h1>
+      <p class="lede">
+        Ziel: Du erkennst, welche Props eine neue Pane braucht, bevor darin ein Graph existiert.
+      </p>
+
+      <section class="callout">
+        <h2>Die vorhandene Schablone</h2>
+        <p>
+          <code>OverviewTablePane.tsx</code> ist die beste Vorlage, weil es dieselbe Ebene im UI-Baum besetzt.
+          Eine neue <code>DependencyGraphPane</code> sollte zuerst nur Layout und Header tragen.
+        </p>
+        <p>
+          Die wichtigen Props sind <code>view: View</code> und <code>isSocketConnected: boolean</code>.
+          Damit bleibt die Pane anschließbar an <code>HUD</code>, ohne schon Graph-Logik zu erfinden.
+        </p>
+      </section>
+
+      <section class="task">
+        <h2>5-Minuten-Aufgabe</h2>
+        <ol>
+          <li>Öffne <code>web/src/OverviewTablePane.tsx</code>.</li>
+          <li>Suche die Props-Definition der Komponente.</li>
+          <li>Notiere alle Imports, die nur für Layout und Header nötig sind.</li>
+          <li>Streiche gedanklich Tabellen-spezifische Imports.</li>
+        </ol>
+      </section>
+
+      <section class="quiz">
+        <h2>Retrieval Check</h2>
+        <details>
+          <summary>Welche Prop liefert der Pane den servergetriebenen UI-Zustand?</summary>
+          <p class="answer"><code>view</code>.</p>
+        </details>
+        <details>
+          <summary>Welche Prop zeigt, ob die Live-Verbindung aktiv ist?</summary>
+          <p class="answer"><code>isSocketConnected</code>.</p>
+        </details>
+        <details>
+          <summary>Warum zuerst Platzhalter statt Graph?</summary>
+          <p class="answer">So testest du Routing und Layout getrennt.</p>
+        </details>
+      </section>
+
+      <section class="source">
+        <h2>Primärquelle</h2>
+        <p>
+          Nutze <code>web/src/OverviewTablePane.tsx</code> als lokale Primärquelle.
+          Die Lektion baut direkt auf <a href="../reference/dependency-graph-view-map.html">der Referenzkarte</a> auf.
+        </p>
+      </section>
+
+      <nav class="lesson-nav" aria-label="Lektionsnavigation">
+        <a href="0001-find-the-route-seam.html">Zurück</a>
+        <a href="0003-understand-header-navigation.html">Nächste Lektion</a>
+      </nav>
+    </main>
+  </body>
+</html>

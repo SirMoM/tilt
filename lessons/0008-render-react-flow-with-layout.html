@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lektion 8: React Flow mit Layout</title>
+    <link rel="stylesheet" href="../assets/course.css" />
+  </head>
+  <body>
+    <main class="page lesson">
+      <p class="eyebrow">Lektion 8</p>
+      <h1>Der erste Graph darf Testdaten haben</h1>
+      <p class="lede">
+        Ziel: Du renderst einen minimalen Graphen, ohne gleichzeitig das Backend zu ändern.
+      </p>
+
+      <section class="callout">
+        <h2>Vorhandene Abhängigkeiten nutzen</h2>
+        <p>
+          <code>@xyflow/react</code> und <code>@dagrejs/dagre</code> sind bereits in <code>web/package.json</code> installiert.
+          Die lazy Entscheidung ist deshalb: kein neues Paket, keine eigene SVG-Engine.
+        </p>
+        <p>
+          Starte mit drei Test-Nodes und zwei Edges.
+          Erst wenn Rendering und Layout verstanden sind, ersetzt du Testdaten durch <code>view.uiResources</code>.
+        </p>
+      </section>
+
+      <section class="task">
+        <h2>6-Minuten-Aufgabe</h2>
+        <ol class="flow-list">
+          <li>Öffne <code>web/package.json</code> und bestätige <code>@xyflow/react</code> sowie <code>@dagrejs/dagre</code>.</li>
+          <li>Skizziere drei Testknoten: <code>frontend</code>, <code>backend</code>, <code>database</code>.</li>
+          <li>Skizziere zwei Edges: <code>frontend -&gt; backend</code>, <code>backend -&gt; database</code>.</li>
+          <li>Entscheide: Welche Daten bleiben Testdaten, welche kommen schon aus <code>view.uiResources</code>?</li>
+        </ol>
+      </section>
+
+      <section class="quiz">
+        <h2>Retrieval Check</h2>
+        <details>
+          <summary>Welche Library rendert den interaktiven Graph-Canvas?</summary>
+          <p class="answer"><code>@xyflow/react</code>.</p>
+        </details>
+        <details>
+          <summary>Welche Library kann automatische Layouts berechnen?</summary>
+          <p class="answer"><code>@dagrejs/dagre</code>.</p>
+        </details>
+        <details>
+          <summary>Warum zuerst Testdaten?</summary>
+          <p class="answer">Sie isolieren Rendering von Datenfluss.</p>
+        </details>
+      </section>
+
+      <section class="source">
+        <h2>Primärquelle</h2>
+        <p>
+          Nutze <a href="https://reactflow.dev/learn/customization/custom-nodes">React Flow Custom Nodes</a>
+          und das lokale <code>web/package.json</code>.
+        </p>
+      </section>
+
+      <nav class="lesson-nav" aria-label="Lektionsnavigation">
+        <a href="0007-separate-blockers-from-static-dependencies.html">Zurück</a>
+        <a href="0009-plan-real-edges-and-navigation.html">Nächste Lektion</a>
+      </nav>
+    </main>
+  </body>
+</html>
