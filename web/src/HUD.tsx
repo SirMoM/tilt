@@ -13,6 +13,7 @@ import HeroScreen from "./HeroScreen"
 import "./HUD.scss"
 import { HudErrorContextProvider } from "./HudErrorContext"
 import HudState from "./HudState"
+import DependencyGraphPane from "./DependencyGraphPane"
 import { InterfaceVersion, useInterfaceVersion } from "./InterfaceVersion"
 import LogStore, { LogStoreProvider } from "./LogStore"
 import OverviewResourcePane from "./OverviewResourcePane"
@@ -23,7 +24,6 @@ import { ResourceListOptionsProvider } from "./ResourceListOptionsContext"
 import { ResourceNavProvider } from "./ResourceNav"
 import { ResourceSelectionProvider } from "./ResourceSelectionContext"
 import ShareSnapshotModal from "./ShareSnapshotModal"
-import SidebarItem from "./SidebarItem"
 import { SidebarContextProvider } from "./SidebarContext"
 import { TiltSnackbarProvider } from "./Snackbar"
 import { SnapshotActionProvider, SnapshotProviderProps } from "./snapshot"
@@ -32,13 +32,11 @@ import { StarredResourcesContextProvider } from "./StarredResourcesContext"
 import {
   ShowErrorModal,
   ShowFatalErrorModal,
-  ResourceView,
   SocketState,
   UIResourceStatus,
 } from "./types"
 import type { Snapshot, View } from "./webview"
 import type { ObjectMeta } from "./types"
-import { DependencyGraphNode } from "./DependencyGraphNode"
 
 export type HudProps = {
   interfaceVersion: InterfaceVersion
@@ -224,10 +222,6 @@ export default class HUD extends Component<HudProps, HudState> {
   renderOverviewSwitch() {
     const isSocketConnected = isTiltSocketConnected(this.state.socketState)
     const logStore = this.state.logStore || new LogStore()
-    const graphResource = this.state.view.uiResources?.[0]
-
-    console.debug("graph route path", this.path("/graph"))
-    console.debug("current pathname", this.props.location.pathname)
 
     return (
       <FeaturesProvider
@@ -243,17 +237,11 @@ export default class HUD extends Component<HudProps, HudState> {
                       <Route
                         path={this.path("/graph")}
                         element={
-                          <div>
-                            {graphResource && (
-                              <DependencyGraphNode
-                                item={new SidebarItem(graphResource, logStore)}
-                                selected={false}
-                                resourceView={ResourceView.Log}
-                                pathBuilder={this.pathBuilder}
-                                uiRes={this.state.view.uiResources}
-                              ></DependencyGraphNode>
-                            )}
-                          </div>
+                          <DependencyGraphPane
+                            view={this.state.view}
+                            isSocketConnected={isSocketConnected}
+                            pathBuilder={this.pathBuilder}
+                          />
                         }
                       />
                       <Route

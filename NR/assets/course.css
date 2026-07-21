@@ -121,6 +121,32 @@ code {
   background: var(--accent-soft);
 }
 
+.progress {
+  margin: 0 0 28px;
+  padding: 14px 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.progress strong {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.progress.done {
+  border-left: 5px solid var(--ok);
+}
+
+.progress.started {
+  border-left: 5px solid var(--warn);
+}
+
+.progress.open {
+  border-left: 5px solid var(--muted);
+}
+
 .backlink {
   margin-top: 36px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;

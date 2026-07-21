@@ -2,19 +2,19 @@
 
 ## Knowledge
 
-- [Local note: `NR/Overview.md`](NR/Overview.md)
+- [Local note: `Overview.md`](Overview.md)
   Project-level Tilt orientation.
   Use for: locating major repo areas and local UI startup commands.
-- [Local note: `NR/webui/Rendering-Stack.md`](NR/webui/Rendering-Stack.md)
+- [Local note: `webui/Rendering-Stack.md`](webui/Rendering-Stack.md)
   Existing summary of the Web UI stack and `View` data flow.
   Use for: routing, WebSocket state, and where rendering begins.
-- [Local note: `NR/webui/Übung-Dependency-Graph-View.md`](NR/webui/%C3%9Cbung-Dependency-Graph-View.md)
+- [Local note: `webui/Übung-Dependency-Graph-View.md`](webui/%C3%9Cbung-Dependency-Graph-View.md)
   Exercise plan for adding a third Dependency Graph View.
   Use for: sequencing practical implementation work.
-- [Local note: `NR/webui/Dependency-Graph-Nodes-und-Storybook.md`](NR/webui/Dependency-Graph-Nodes-und-Storybook.md)
+- [Local note: `webui/Dependency-Graph-Nodes-und-Storybook.md`](webui/Dependency-Graph-Nodes-und-Storybook.md)
   Component-first plan for graph nodes and Storybook stories.
   Use for: designing `DependencyGraphNode` before graph integration.
-- [Local note: `NR/webui/Dependency-Graph-Datenquelle.md`](NR/webui/Dependency-Graph-Datenquelle.md)
+- [Local note: `webui/Dependency-Graph-Datenquelle.md`](webui/Dependency-Graph-Datenquelle.md)
   Existing analysis of `UIResource`, current blocker state, and backend `Manifest.ResourceDependencies`.
   Use for: deciding where graph edges can come from.
 - [React Router v6 documentation](https://reactrouter.com/6.30.3)

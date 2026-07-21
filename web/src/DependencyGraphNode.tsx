@@ -1,5 +1,4 @@
 import React from "react"
-import { SidebarItemViewProps } from "./SidebarItemView"
 import {
   Background,
   BackgroundVariant,
@@ -11,7 +10,7 @@ import {
 import "@xyflow/react/dist/style.css"
 import dagre from "@dagrejs/dagre"
 
-type DependencyGraphNodeProps = SidebarItemViewProps & {
+type DependencyGraphNodeProps = {
   children?: React.ReactNode
   uiRes?: any
 }
@@ -93,29 +92,18 @@ const initialEdges: DependencyEdge[] = [
   { id: "n3-n2", source: "n3", target: "n2" },
 ]
 
-export const DependencyGraphNode = ({
-  children,
-  uiRes,
-  ...sidebarItemProps
-}: DependencyGraphNodeProps) => {
+export const DependencyGraphNode = ({ uiRes }: DependencyGraphNodeProps) => {
   console.log("Rendering DependencyGraphNode")
-  console.warn(JSON.stringify(uiRes, null, 4))
   const { nodes: layoutedNodes, edges: layoutedEdges } = getLayoutedElements(
     initialNodes,
     initialEdges
   )
-
   return (
-    <div
-      style={{
-        width: "100vw",
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <div id="can" style={{ width: "50vw", height: "50vh" }}>
+    <div style={{ display: "flex", width: "100vw", height: "100vh", gap: 16 }}>
+      <textarea readOnly style={{ flex: 1, resize: "none" }}>
+        {JSON.stringify(uiRes, null, 4)}
+      </textarea>
+      <div id="can" style={{ flex: 2, minWidth: 0 }}>
         <ReactFlow
           colorMode="dark"
           nodes={layoutedNodes}
@@ -125,7 +113,6 @@ export const DependencyGraphNode = ({
         >
           <Background variant={BackgroundVariant.Dots} gap={12} size={1} />
         </ReactFlow>
-        {/*<SidebarItemView {...sidebarItemProps} />*/}
       </div>
     </div>
   )
