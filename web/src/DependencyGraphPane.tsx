@@ -8,6 +8,7 @@ import SidebarItem from "./SidebarItem"
 import { Color } from "./style-helpers"
 import { ResourceView } from "./types"
 import type { View } from "./webview"
+import {UIResource} from "./core";
 
 type DependencyGraphPaneProps = {
   view: View
@@ -35,7 +36,7 @@ export default function DependencyGraphPane({
   isSocketConnected,
   pathBuilder,
 }: DependencyGraphPaneProps) {
-  const graphResources = view.uiResources ?? []
+  const graphResources: UIResource[] = view.uiResources ?? []
 
   return (
     <DependencyGraphPaneRoot>

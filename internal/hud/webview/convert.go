@@ -266,24 +266,29 @@ func toUIResource(mt *store.ManifestTarget, s store.EngineState, disableSources 
 	if err != nil {
 		return nil, errors.Wrap(err, "error determining disable resource status")
 	}
-
+	in := mt.Manifest.ResourceDependencies
+	deps := make([]string, len(in))
+	for i, v := range in {
+		deps[i] = string(v)
+	}
 	r := &v1alpha1.UIResource{
 		ObjectMeta: metav1.ObjectMeta{
 			Name:   mn.String(),
 			Labels: mt.Manifest.Labels,
 		},
 		Status: v1alpha1.UIResourceStatus{
-			LastDeployTime:    lastDeploy,
-			BuildHistory:      bh,
-			PendingBuildSince: metav1.NewMicroTime(pendingBuildSince),
-			CurrentBuild:      cb,
-			EndpointLinks:     ToAPILinks(endpoints),
-			Specs:             specs,
-			TriggerMode:       int32(mt.Manifest.TriggerMode),
-			HasPendingChanges: hasPendingChanges,
-			Queued:            s.ManifestInTriggerQueue(mn),
-			DisableStatus:     drs,
-			Waiting:           holdToWaiting(hold),
+			LastDeployTime:       lastDeploy,
+			BuildHistory:         bh,
+			PendingBuildSince:    metav1.NewMicroTime(pendingBuildSince),
+			CurrentBuild:         cb,
+			EndpointLinks:        ToAPILinks(endpoints),
+			Specs:                specs,
+			TriggerMode:          int32(mt.Manifest.TriggerMode),
+			HasPendingChanges:    hasPendingChanges,
+			Queued:               s.ManifestInTriggerQueue(mn),
+			DisableStatus:        drs,
+			Waiting:              holdToWaiting(hold),
+			ResourceDependencies: deps,
 		},
 	}
 

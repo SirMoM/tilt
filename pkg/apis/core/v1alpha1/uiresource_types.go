@@ -219,6 +219,9 @@ type UIResourceStatus struct {
 	//
 	// +optional
 	Conditions []UIResourceCondition `json:"conditions,omitempty" protobuf:"bytes,18,rep,name=conditions"`
+
+	// ResourceDependencies specifies a list of resources that this resource depends on for its operation and status.
+	ResourceDependencies []string `json:"resourceDependencies,omitempty" protobuf:"bytes,20,rep,name=resourceDependencies"`
 }
 
 // UIResource implements ObjectWithStatusSubResource interface.

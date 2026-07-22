@@ -327,6 +327,19 @@ func TestLocalResource(t *testing.T) {
 	require.False(t, spec.HasLiveUpdate)
 }
 
+func TestResourceDependencies(t *testing.T) {
+	m := model.Manifest{
+		Name:                 "frontend",
+		ResourceDependencies: []model.ManifestName{"backend", "database"},
+	}.WithDeployTarget(model.LocalTarget{})
+	state := newState([]model.Manifest{m})
+
+	v := completeProtoView(t, *state)
+	resource, ok := findResource(m.Name, v)
+	require.True(t, ok)
+	require.Equal(t, []string{"backend", "database"}, resource.ResourceDependencies)
+}
+
 func TestBuildHistory(t *testing.T) {
 	br1 := model.BuildRecord{
 		StartTime:  time.Now().Add(-1 * time.Hour),

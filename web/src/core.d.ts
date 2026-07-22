@@ -2220,6 +2220,13 @@ export interface LiveUpdateSpec {
    * +optional
    */
   restart?: LiveUpdateRestartStrategy
+  /**
+   * InitialSync configures full file sync on container start/restart.
+   * When set, all files matching sync rules are uploaded when a container
+   * starts for the first time or restarts, bypassing the file-watch system.
+   * +optional
+   */
+  initialSync?: LiveUpdateInitialSync
 }
 /**
  * LiveUpdateStatus defines the observed state of LiveUpdate
@@ -2365,6 +2372,10 @@ export interface LiveUpdateExec {
  * https://docs.tilt.dev/live_update_reference.html
  */
 export type LiveUpdateRestartStrategy = string
+/**
+ * LiveUpdateInitialSync enables full file sync on container start/restart.
+ */
+export interface LiveUpdateInitialSync {}
 /**
  * LiveUpdateContainerStatus defines the observed state of
  * the live-update syncer for a particular container.
@@ -3901,6 +3912,10 @@ export interface UIResourceStatus {
    * +optional
    */
   conditions?: UIResourceCondition[]
+  /**
+   * ResourceDependencies specifies a list of resources that this resource depends on for its operation and status.
+   */
+  resourceDependencies?: string[]
 }
 /**
  * UIResourceLink represents a link assocatiated with a UIResource.
