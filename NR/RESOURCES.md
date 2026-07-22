@@ -23,6 +23,9 @@
 - [React Flow documentation](https://reactflow.dev)
   Official documentation for `@xyflow/react`, custom nodes, handles, `ReactFlow`, and `nodeTypes`.
   Use for: graph rendering once routing and node shape are clear.
+- [React Flow: Custom Nodes](https://reactflow.dev/learn/customization/custom-nodes)
+  Official guide showing that custom nodes are ordinary React components registered through `nodeTypes`.
+  Use for: wrapping `SidebarItemView` as one resource node.
 - [Storybook 6 documentation](https://storybook.js.org/docs/6)
   Official documentation for isolated component stories.
   Use for: graph-node states before full integration.
@@ -36,5 +39,4 @@
 
 ## Gaps
 
-- Need one code-grounded walkthrough of the exact current `HUD.tsx` route structure.
-- Need one code-grounded walkthrough of how generated Go model fields become `web/src/*.d.ts` TypeScript fields.
+- Need evidence from the implementation lessons that complete and delta WebSocket updates both carry the new spec field.

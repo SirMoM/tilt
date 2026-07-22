@@ -9,7 +9,8 @@ The concrete target is to work confidently across routing, data flow, node rende
 - I can add a new `/graph` route without breaking the existing overview and resource pages.
 - I can design a graph node in Storybook before integrating it into React Flow.
 - I can distinguish current UI blocker state from static backend dependency data.
-- I can identify the backend and generated-type changes needed for real dependency edges.
+- I can expose static dependencies through `UIResourceStatus`, generated TypeScript types, and existing WebSocket updates.
+- I can reuse `SidebarItemView` as a React Flow custom node with its existing status, navigation, and build actions.
 
 ## Constraints
 - Keep lessons short and tied to the existing Tilt codebase.

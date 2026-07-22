@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lektion 6: UIResources auf Sidebar-Nodes abbilden</title>
+    <link rel="stylesheet" href="../assets/course.css" />
+  </head>
+  <body>
+    <main class="page lesson">
+      <p class="eyebrow">Lektion 6</p>
+      <h1>Aus jeder <code>UIResource</code> wird eine Sidebar-Node</h1>
+      <p class="lede">
+        Ziel: Du wandelst alle Ressourcen aus <code>view.uiResources</code> in einzeln bedienbare React-Flow-Nodes um.
+      </p>
+
+      <p class="progress started">
+        <strong>Status: begonnen.</strong>
+        Die Graph Pane reicht alle <code>UIResource</code>-Objekte weiter; das Mapping auf <code>SidebarItem</code> und React-Flow-Nodes fehlt noch.
+      </p>
+
+      <section class="callout">
+        <h2>Das Mapping</h2>
+        <p>
+          <code>SidebarItem</code> verdichtet eine <code>UIResource</code> zusammen mit dem <code>LogAlertIndex</code> zu Status, Build-Daten, Hold und Aktionen.
+          Diese vorhandene Verdichtung soll der Graph wiederverwenden.
+        </p>
+        <p>
+          Das Ergebnis pro Ressource ist eine React-Flow-Node mit <code>id: item.name</code>, <code>type: "resource"</code>
+          und <code>data.sidebarProps</code> für <code>SidebarItemView</code>.
+        </p>
+      </section>
+
+      <section class="task">
+        <h2>8-Minuten-Aufgabe</h2>
+        <ol class="flow-list">
+          <li>Finde in <code>SidebarResources.tsx</code>, wie <code>SidebarItem</code>-Objekte erzeugt werden.</li>
+          <li>Erzeuge für jede <code>UIResource</code> genau einen <code>SidebarItem</code>.</li>
+          <li>Mappe jeden Eintrag auf eine React-Flow-Node vom Typ <code>resource</code>.</li>
+          <li>Nutze zunächst Position <code>{ x: 0, y: 0 }</code>; Dagre übernimmt später das Layout.</li>
+        </ol>
+      </section>
+
+      <section class="quiz">
+        <h2>Retrieval Check</h2>
+        <details>
+          <summary>Was verdichtet eine <code>UIResource</code> für die Anzeige?</summary>
+          <p class="answer"><code>SidebarItem</code>.</p>
+        </details>
+        <details>
+          <summary>Was ist die stabile Node-ID?</summary>
+          <p class="answer">Der Ressourcenname.</p>
+        </details>
+        <details>
+          <summary>Warum bleibt der <code>LogAlertIndex</code> relevant?</summary>
+          <p class="answer">Er beeinflusst angezeigte Statuswerte.</p>
+        </details>
+      </section>
+
+      <section class="source">
+        <h2>Primärquelle</h2>
+        <p>Nutze <code>web/src/SidebarItem.tsx</code>, <code>web/src/SidebarResources.tsx</code> und <code>web/src/SidebarItemView.tsx</code>.</p>
+      </section>
+
+      <nav class="lesson-nav" aria-label="Lektionsnavigation">
+        <a href="0005-exercise-sidebar-item-node-states.html">Zurück</a>
+        <a href="0007-separate-blockers-from-static-dependencies.html">Nächste Lektion</a>
+      </nav>
+    </main>
+  </body>
+</html>

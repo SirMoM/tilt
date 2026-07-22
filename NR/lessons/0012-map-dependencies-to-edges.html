@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lektion 12: Dependencies auf Edges abbilden</title>
+    <link rel="stylesheet" href="../assets/course.css" />
+  </head>
+  <body>
+    <main class="page lesson">
+      <p class="eyebrow">Lektion 12</p>
+      <h1>Echte Edges mit bedienbaren Sidebar-Nodes verbinden</h1>
+      <p class="lede">Ziel: Du ersetzt Test-Edges durch Backend-Dependencies, ohne die vorhandenen Sidebar-Aktionen nachzubauen.</p>
+
+      <p class="progress open"><strong>Status: offen.</strong> Der Graph verwendet noch statische Test-Edges.</p>
+
+      <section class="callout">
+        <h2>Eine direkte Dependency wird eine Edge</h2>
+        <p>
+          Für jede Ressource wird jeder Eintrag aus <code>resource.status.resourceDependencies</code> zu einer gerichteten React-Flow-Edge.
+          Die gewählte Richtung muss sichtbar dokumentiert und im Dagre-Layout konsistent verwendet werden.
+        </p>
+        <p>
+          Klick, Status und Restart bleiben Aufgaben von <code>SidebarItemView</code>.
+          Die Graph-Integration ergänzt nur Edge-Mapping, Handles und Layout.
+        </p>
+      </section>
+
+      <section class="task">
+        <h2>Implementierungsaufgabe</h2>
+        <ol class="flow-list">
+          <li>Schreibe einen Frontend-Test für drei Ressourcen und zwei Dependencies.</li>
+          <li>Mappe jede direkte Dependency deterministisch auf eine Edge-ID.</li>
+          <li>Überspringe Edges nur dann, wenn Source oder Target nicht als Node existiert.</li>
+          <li>Übergib echte Nodes und Edges an Dagre und React Flow.</li>
+          <li>Prüfe Node-Klick und Build-Aktion über die vorhandenen ResourceNav-/Sidebar-Pfade.</li>
+        </ol>
+      </section>
+
+      <section class="quiz">
+        <h2>Retrieval Check</h2>
+        <details><summary>Woher stammen echte Edges?</summary><p class="answer"><code>UIResourceStatus.resourceDependencies</code>.</p></details>
+        <details><summary>Wer implementiert Node-Navigation?</summary><p class="answer"><code>SidebarItemView</code>.</p></details>
+        <details><summary>Wer positioniert die Nodes?</summary><p class="answer">Dagre.</p></details>
+      </section>
+
+      <section class="source"><h2>Primärquelle</h2><p>Nutze <code>web/src/SidebarItemView.tsx</code>, <code>web/src/ResourceNav.tsx</code> und die React-Flow-Dokumentation zu Custom Nodes und Handles.</p></section>
+
+      <section class="callout"><h2>Abschluss</h2><p>Danach zeigt der Graph echte Tilt-Dependencies und behält die bekannte Ressourcenfunktionalität der Sidebar.</p></section>
+
+      <nav class="lesson-nav" aria-label="Lektionsnavigation">
+        <a href="0011-generate-types-and-verify-websocket-delivery.html">Zurück</a>
+        <a href="../reference/dependency-graph-view-map.html">Referenzkarte</a>
+      </nav>
+    </main>
+  </body>
+</html>

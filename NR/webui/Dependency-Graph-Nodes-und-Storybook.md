@@ -38,21 +38,19 @@ Prüfe vor der Installation, welche Version mit React 17 kompatibel ist.
 - Pan, Zoom, Auswahl und Handles sind bereits vorhanden.
 - Das Layout kann später top-down, left-to-right oder mit Layout-Helfern ergänzt werden.
 
-## Aufgabe 1: Node-API festlegen
+## Aufgabe 1: SidebarItemView als Node-Inhalt festlegen
 
 > [!question]
 > Welche Daten braucht ein Graph-Knoten wirklich?
 
-Empfohlener Start:
+Der Graph erhält alle Ressourcen, aber jede React-Flow-Node repräsentiert genau eine Ressource.
+Nutze für den sichtbaren und interaktiven Inhalt das bestehende `SidebarItemView`.
 
-- `name`: Ressourcen-Name
-- `status`: verdichteter Ressourcen-Status
-- `isSelected`: ob der Knoten aktiv ausgewählt ist
-- `onOpen`: Callback zur Ressourcen-Detailansicht
-- `onRestart`: optionaler Callback für Restart-Aktionen
+Die Node-Daten enthalten deshalb vorbereitete `SidebarItemViewProps` für genau eine Ressource.
+React Flow ergänzt nur Graph-spezifische Daten wie `id`, `position`, `type` und Handles.
 
-Halte die Props klein.
-Die Komponente soll nicht das komplette `View`-Objekt kennen.
+Die Custom Node soll nicht das komplette `View`-Objekt kennen.
+Sie soll vorhandene Sidebar-Funktionalität wie Status, Navigation, Build-Aktion und Disabled-Zustand wiederverwenden.
 
 ## Aufgabe 2: Statusdarstellung entwerfen
 

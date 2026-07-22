@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lektion 9: Backend-Datenfluss zur Web-UI</title>
+    <link rel="stylesheet" href="../assets/course.css" />
+  </head>
+  <body>
+    <main class="page lesson">
+      <p class="eyebrow">Lektion 9</p>
+      <h1>Den Weg vom Manifest bis zum Browser verfolgen</h1>
+      <p class="lede">
+        Ziel: Du kannst erklären, wie statische Dependencies in den bestehenden WebSocket-Datenfluss passen.
+      </p>
+
+      <p class="progress done"><strong>Status: erledigt.</strong> Der bestehende Datenfluss wurde bis zu <code>UIResourceStatus</code>, WebSocket und HUD nachvollzogen.</p>
+
+      <section class="callout">
+        <h2>Der bestehende Transport</h2>
+        <ol class="flow-list">
+          <li><code>Manifest.ResourceDependencies</code> enthält die Quelldaten.</li>
+          <li><code>toUIResource()</code> erzeugt den beobachteten <code>UIResourceStatus</code> aus dem Engine-State.</li>
+          <li><code>webview.View.UiResources</code> trägt vollständige und inkrementelle Updates.</li>
+          <li><code>sendView()</code> serialisiert das <code>View</code> als JSON über <code>/ws/view</code>.</li>
+          <li><code>AppController</code> parst das JSON; <code>HUD</code> ersetzt oder merged den Zustand.</li>
+        </ol>
+      </section>
+
+      <section class="task">
+        <h2>10-Minuten-Aufgabe</h2>
+        <ol class="flow-list">
+          <li>Finde <code>ResourceDependencies</code> in <code>pkg/model/manifest.go</code>.</li>
+          <li>Finde <code>toUIResource()</code> in <code>internal/hud/webview/convert.go</code>.</li>
+          <li>Finde <code>UiResources</code> in <code>pkg/webview/view.go</code>.</li>
+          <li>Finde Delta-Updates und JSON-Encoding in <code>internal/hud/server/websocket.go</code>.</li>
+          <li>Finde Parsing und Merge in <code>web/src/AppController.ts</code> und <code>web/src/HUD.tsx</code>.</li>
+        </ol>
+      </section>
+
+      <section class="quiz">
+        <h2>Retrieval Check</h2>
+        <details><summary>Welche Struktur transportiert UIResources?</summary><p class="answer"><code>webview.View</code>.</p></details>
+        <details><summary>Welcher Endpunkt liefert Live-Updates?</summary><p class="answer"><code>/ws/view</code>.</p></details>
+        <details><summary>Wer merged Delta-Updates im Browser?</summary><p class="answer"><code>HUD</code>.</p></details>
+      </section>
+
+      <section class="source"><h2>Primärquelle</h2><p>Nutze die fünf Code-Stellen aus der Aufgabe und <code>NR/webui/Rendering-Stack.md</code>.</p></section>
+
+      <nav class="lesson-nav" aria-label="Lektionsnavigation">
+        <a href="0008-render-react-flow-with-layout.html">Zurück</a>
+        <a href="0010-add-dependencies-to-uiresource-status.html">Nächste Lektion</a>
+      </nav>
+    </main>
+  </body>
+</html>

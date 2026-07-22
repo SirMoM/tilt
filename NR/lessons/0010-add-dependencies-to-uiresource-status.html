@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lektion 10: Dependencies in UIResourceStatus</title>
+    <link rel="stylesheet" href="../assets/course.css" />
+  </head>
+  <body>
+    <main class="page lesson">
+      <p class="eyebrow">Lektion 10</p>
+      <h1>Dependencies im bestehenden UI-Read-Model ergänzen</h1>
+      <p class="lede">Ziel: Du ergänzt die statische Dependency-Liste dort, wo <code>UIResource</code> Engine-Daten für die UI beobachtbar macht.</p>
+
+      <p class="progress done"><strong>Status: erledigt.</strong> <code>UIResourceStatus</code> enthält statische Resource-Dependencies, <code>toUIResource()</code> mappt sie aus dem Manifest und die Paket-Tests bestehen.</p>
+
+      <section class="callout">
+        <h2>Warum <code>status</code> statt <code>spec</code>?</h2>
+        <p>
+          <code>UIResourceSpec</code> ist absichtlich leer: Ein <code>UIResource</code> spezifiziert kein gewünschtes Verhalten.
+          Es ist ein Read Model, das Daten aus der Legacy Engine für UI-Clients veröffentlicht.
+        </p>
+        <p>
+          <code>UIResourceStatus</code> enthält bereits UI-relevante Zusammenfassungen wie Target-Specs, Reihenfolge und Waiting-Informationen.
+          <code>toUIResource()</code> besitzt mit <code>mt.Manifest</code> außerdem direkt die statischen <code>ResourceDependencies</code>.
+        </p>
+      </section>
+
+      <section class="task">
+        <h2>Implementierungsaufgabe</h2>
+        <ol class="flow-list">
+          <li>Schreibe in <code>internal/hud/webview/convert_test.go</code> zuerst einen Test für ein Manifest mit zwei <code>ResourceDependencies</code>.</li>
+          <li>Ergänze <code>ResourceDependencies []string</code> in <code>UIResourceStatus</code>.</li>
+          <li>Verwende eine neue, bisher unbenutzte Protobuf-Feldnummer.</li>
+          <li>Mappe <code>mt.Manifest.ResourceDependencies</code> in <code>toUIResource()</code> auf Strings.</li>
+          <li>Führe den fokussierten <code>internal/hud/webview</code>-Test aus.</li>
+        </ol>
+      </section>
+
+      <section class="quiz">
+        <h2>Retrieval Check</h2>
+        <details><summary>Warum bleibt <code>UIResourceSpec</code> leer?</summary><p class="answer">UIResource spezifiziert kein Verhalten.</p></details>
+        <details><summary>Wo wird der beobachtete UI-Zustand erzeugt?</summary><p class="answer"><code>toUIResource()</code>.</p></details>
+        <details><summary>Woher kommen die statischen Dependencies?</summary><p class="answer"><code>mt.Manifest.ResourceDependencies</code>.</p></details>
+      </section>
+
+      <section class="source"><h2>Primärquelle</h2><p>Nutze <code>pkg/apis/core/v1alpha1/uiresource_types.go</code>, <code>internal/hud/webview/convert.go</code> und <code>internal/engine/uiresource/subscriber.go</code>.</p></section>
+
+      <nav class="lesson-nav" aria-label="Lektionsnavigation">
+        <a href="0009-trace-backend-data-to-the-web-ui.html">Zurück</a>
+        <a href="0011-generate-types-and-verify-websocket-delivery.html">Nächste Lektion</a>
+      </nav>
+    </main>
+  </body>
+</html>

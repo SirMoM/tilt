@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lektion 11: Typen generieren und Transport prüfen</title>
+    <link rel="stylesheet" href="../assets/course.css" />
+  </head>
+  <body>
+    <main class="page lesson">
+      <p class="eyebrow">Lektion 11</p>
+      <h1>Vom Go-Feld zum TypeScript-Feld</h1>
+      <p class="lede">Ziel: Du generierst den Frontend-Typ und beweist, dass vollständige sowie inkrementelle Updates das Feld tragen.</p>
+
+      <p class="progress open"><strong>Status: offen.</strong> <code>core.d.ts</code> kennt noch keine Resource-Dependencies im Status.</p>
+
+      <section class="callout">
+        <h2>Tygo ist die Typ-Brücke</h2>
+        <p>
+          <code>tygo.yaml</code> generiert <code>web/src/core.d.ts</code> aus <code>pkg/apis/core/v1alpha1</code>
+          und <code>web/src/webview.d.ts</code> aus <code>pkg/webview</code>.
+        </p>
+        <p>
+          Weil das Feld Teil von <code>UIResourceStatus</code> ist, bleibt die WebSocket-Serialisierung unverändert:
+          vollständige Views und Delta-Views enthalten dasselbe UIResource-Objekt.
+        </p>
+      </section>
+
+      <section class="task">
+        <h2>Implementierungsaufgabe</h2>
+        <ol class="flow-list">
+          <li>Führe <code>make update-codegen-ts</code> aus.</li>
+          <li>Prüfe das generierte Feld in <code>web/src/core.d.ts</code>.</li>
+          <li>Erweitere fokussierte Tests für vollständige View-Ausgabe und UIResource-Delta-Ausgabe.</li>
+          <li>Führe die relevanten Go-Tests und danach <code>yarn check</code> aus.</li>
+        </ol>
+      </section>
+
+      <section class="quiz">
+        <h2>Retrieval Check</h2>
+        <details><summary>Welche Datei konfiguriert Go-zu-TypeScript?</summary><p class="answer"><code>tygo.yaml</code>.</p></details>
+        <details><summary>Welche Datei enthält <code>UIResourceStatus</code> im Frontend?</summary><p class="answer"><code>core.d.ts</code>.</p></details>
+        <details><summary>Braucht JSON-Encoding Sonderlogik?</summary><p class="answer">Nein, UIResource wird vollständig serialisiert.</p></details>
+      </section>
+
+      <section class="source"><h2>Primärquelle</h2><p>Nutze <code>tygo.yaml</code>, <code>Makefile</code> und <code>internal/hud/server/websocket.go</code>.</p></section>
+
+      <nav class="lesson-nav" aria-label="Lektionsnavigation">
+        <a href="0010-add-dependencies-to-uiresource-status.html">Zurück</a>
+        <a href="0012-map-dependencies-to-edges.html">Nächste Lektion</a>
+      </nav>
+    </main>
+  </body>
+</html>

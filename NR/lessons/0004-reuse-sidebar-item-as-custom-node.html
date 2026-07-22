@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lektion 4: SidebarItemView als Custom Node</title>
+    <link rel="stylesheet" href="../assets/course.css" />
+  </head>
+  <body>
+    <main class="page lesson">
+      <p class="eyebrow">Lektion 4</p>
+      <h1><code>SidebarItemView</code> als React-Flow-Node wiederverwenden</h1>
+      <p class="lede">
+        Ziel: Eine Graph-Node repräsentiert genau eine Ressource und übernimmt die bewährte Darstellung und Interaktion der Sidebar.
+      </p>
+
+      <p class="progress started">
+        <strong>Status: begonnen.</strong>
+        Der Graph rendert bereits React-Flow-Nodes, verwendet aber noch keine registrierte Custom Node mit <code>SidebarItemView</code>.
+      </p>
+
+      <section class="callout">
+        <h2>Zwei Ebenen sauber trennen</h2>
+        <p>
+          Der Graph erhält alle Ressourcen.
+          Jede React-Flow-Node erhält dagegen genau einen vorbereiteten <code>SidebarItem</code> und rendert damit <code>SidebarItemView</code>.
+        </p>
+        <p>
+          So bleiben Status, Build-Animation, Restart-Aktion, Disabled-Zustand und Navigation zur Ressourcenansicht erhalten.
+          React Flow ergänzt nur <code>id</code>, <code>position</code>, <code>data</code> und Handles für das Graph-Layout.
+        </p>
+      </section>
+
+      <section class="task">
+        <h2>8-Minuten-Aufgabe</h2>
+        <ol class="flow-list">
+          <li>Lies <code>web/src/SidebarItemView.tsx</code> ab <code>SidebarItemViewProps</code>.</li>
+          <li>Markiere Navigation, Build-Aktion, Statusanzeige und Disabled-Variante.</li>
+          <li>Definiere eine React-Flow-Datenform mit einem Feld <code>sidebarProps: SidebarItemViewProps</code>.</li>
+          <li>Erstelle eine Custom Node, die Handles und <code>&lt;SidebarItemView {...data.sidebarProps} /&gt;</code> rendert.</li>
+          <li>Registriere sie außerhalb der Renderfunktion über <code>nodeTypes</code>.</li>
+        </ol>
+      </section>
+
+      <section class="quiz">
+        <h2>Retrieval Check</h2>
+        <details>
+          <summary>Wie viele Ressourcen repräsentiert eine Custom Node?</summary>
+          <p class="answer">Genau eine Ressource.</p>
+        </details>
+        <details>
+          <summary>Wer besitzt Position und Handles?</summary>
+          <p class="answer">Die React-Flow-Node.</p>
+        </details>
+        <details>
+          <summary>Wer besitzt Status und Aktionen?</summary>
+          <p class="answer"><code>SidebarItemView</code>.</p>
+        </details>
+      </section>
+
+      <section class="source">
+        <h2>Primärquelle</h2>
+        <p>
+          Nutze <code>web/src/SidebarItemView.tsx</code> und
+          <a href="https://reactflow.dev/learn/customization/custom-nodes">React Flow: Custom Nodes</a>.
+        </p>
+      </section>
+
+      <nav class="lesson-nav" aria-label="Lektionsnavigation">
+        <a href="0003-understand-header-navigation.html">Zurück</a>
+        <a href="0005-exercise-sidebar-item-node-states.html">Nächste Lektion</a>
+      </nav>
+    </main>
+  </body>
+</html>

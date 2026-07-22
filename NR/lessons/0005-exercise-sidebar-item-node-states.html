@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lektion 5: SidebarItem-Node-Zustände</title>
+    <link rel="stylesheet" href="../assets/course.css" />
+  </head>
+  <body>
+    <main class="page lesson">
+      <p class="eyebrow">Lektion 5</p>
+      <h1>Sidebar-Funktionalität innerhalb von React Flow prüfen</h1>
+      <p class="lede">
+        Ziel: Du beweist in Storybook, dass die wiederverwendete Sidebar-Node auch im Graph-Kontext funktioniert.
+      </p>
+
+      <p class="progress started">
+        <strong>Status: begonnen.</strong>
+        Eine Default-Story existiert; Custom-Node-Zustände und Interaktionen fehlen noch.
+      </p>
+
+      <section class="callout">
+        <h2>Nicht neu gestalten, vorhandenes Verhalten prüfen</h2>
+        <p>
+          Healthy, Warning, Unhealthy, Building, Disabled und LongName kommen aus dem bestehenden <code>SidebarItemView</code>.
+          Die Graph-Story prüft deshalb Wiederverwendung statt einer zweiten Statusdarstellung.
+        </p>
+        <p>
+          Zusätzlich müssen Klick-Navigation und Restart/Build-Button im React-Flow-Container bedienbar bleiben.
+          Interaktive Inhalte können bei Bedarf die React-Flow-Klasse <code>nodrag</code> verwenden.
+        </p>
+      </section>
+
+      <section class="task">
+        <h2>8-Minuten-Aufgabe</h2>
+        <ol class="flow-list">
+          <li>Nutze die Testdatenmuster aus <code>SidebarItemView.stories.tsx</code>.</li>
+          <li>Rendere die Custom Node in einem kleinen React-Flow-Canvas.</li>
+          <li>Zeige Healthy, Warning, Unhealthy, Building, Disabled und LongName.</li>
+          <li>Prüfe, dass Klick und Build-Button nicht ungewollt den Node-Drag auslösen.</li>
+        </ol>
+      </section>
+
+      <section class="quiz">
+        <h2>Retrieval Check</h2>
+        <details>
+          <summary>Warum keine zweite Statusdarstellung bauen?</summary>
+          <p class="answer">Die Sidebar besitzt sie bereits.</p>
+        </details>
+        <details>
+          <summary>Welcher Fall schützt vor Layoutbruch?</summary>
+          <p class="answer"><code>LongName</code>.</p>
+        </details>
+        <details>
+          <summary>Welche Klasse schützt interaktive Inhalte vor Drag?</summary>
+          <p class="answer"><code>nodrag</code>.</p>
+        </details>
+      </section>
+
+      <section class="source">
+        <h2>Primärquelle</h2>
+        <p>
+          Nutze <code>web/src/SidebarItemView.stories.tsx</code> und
+          <a href="https://reactflow.dev/learn/customization/custom-nodes">React Flow: Custom Nodes</a>.
+        </p>
+      </section>
+
+      <nav class="lesson-nav" aria-label="Lektionsnavigation">
+        <a href="0004-reuse-sidebar-item-as-custom-node.html">Zurück</a>
+        <a href="0006-map-uiresources-to-sidebar-nodes.html">Nächste Lektion</a>
+      </nav>
+    </main>
+  </body>
+</html>

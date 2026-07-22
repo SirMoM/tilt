@@ -150,15 +150,16 @@ Die Web-UI braucht dafür zusätzlich die statischen Resource-Dependencies aus d
 
 > [!todo]
 > Wenn die Graph-View echte Dependency-Kanten anzeigen soll, muss das Backend die statischen Dependencies an die Web-UI liefern.
-> Danach müssen die generierten TypeScript-Typen aktualisiert und im Frontend gemappt werden.
+> Der passende Pfad ist `UIResourceStatus.resourceDependencies`, weil `UIResource` ein Read Model für den Legacy-Engine-Zustand ist und sein Spec absichtlich leer bleibt.
 
 Möglicher Ablauf:
 
-1. Backend-Feld oder zusätzlicher View-Datenblock für Resource-Dependencies ergänzen.
-2. Typen generieren, damit TypeScript das neue Feld kennt.
-3. `view.uiResources` auf React-Flow-Nodes mappen.
-4. Die neuen Dependency-Daten auf React-Flow-Edges mappen.
-5. Optional ein Layout wie Dagre verwenden, um die Nodes automatisch anzuordnen.
+1. `ResourceDependencies []string` in `UIResourceStatus` ergänzen.
+2. Das Feld in `toUIResource()` aus `Manifest.ResourceDependencies` befüllen.
+3. Mit tygo `web/src/core.d.ts` aktualisieren.
+4. `view.uiResources` auf React-Flow-Nodes mit `SidebarItemView` mappen.
+5. `resource.status.resourceDependencies` auf React-Flow-Edges mappen.
+6. Dagre für die automatische Anordnung verwenden.
 
 ## Kurzantworten für Aufgabe 4
 
